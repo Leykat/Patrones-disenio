@@ -2,7 +2,7 @@ package Cliente;
 
 import javax.swing.JOptionPane;
 import Comportamiento.*;
-//import Creacionales.*;
+import Creacionales.*;
 import Estructurales.*;
 
 
@@ -24,7 +24,33 @@ public class Cliente {
                     case "3":
                         
                     case "4":
-                    
+                        String id = String.valueOf((int) (Math.random() * (100 - 1) + 1));
+                        GestorBahias objGB = new GestorBahias();
+                        BahiaVehiculo objIdBahia = objGB.getidBahiaVehiculo("1");
+                        BahiaVehiculo objTipoBahia = objGB.getTipoBahiaVehiculo("Bahia Auto");
+
+                        //BAHIA
+                        System.out.println("ID " + objIdBahia.getId());
+                        System.out.println("TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
+
+                        //BAHIA_Duplicado
+                        BahiaVehiculo objIdBahiaDup = objGB.getIdDuplicate("1");
+                        BahiaVehiculo objTipoBahiaDup = objGB.getTipoDuplicate("Bahia Auto");
+                        System.out.println("ID DUPLICADO " + objIdBahiaDup.getId());
+                        System.out.println("TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
+
+                        // Modificamos bahia original
+                        objIdBahia.setId(id);
+                        objIdBahia.setTipoVehiculo("Bahia Moto");
+
+                        System.out.println("ID " + objIdBahia.getId());
+                        System.out.println("TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
+
+                        //Modificar Duplicado
+                        objIdBahiaDup.setId(id);
+                        objTipoBahiaDup.setTipoVehiculo("Bahia Moto");
+                        System.out.println("ID DUPLICADO " + objIdBahiaDup.getId());
+                        System.out.println("TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
                     case "5":
                         
                 }
