@@ -18,7 +18,51 @@ public class Cliente {
                 switch(opcionPatron1){
                     
                     case "1":
-                        
+       VehiculoTransporte autos = new fabricaAutos();
+      VehiculoTransporte bicis = new fabricaBicicleta();
+      VehiculoTransporte motos = new fabricaMoto();
+      
+        String cad = "", salida;
+        cad += "Ingrese la opción correspondiente para obtener el codigoTicket del servicio\n";
+        cad += "1. Codigo para espacio de parqueo Autos\n";
+        cad += "2. Codigo  para espacio de parqueo Motos\n";
+        cad += "3. Codigo  para espacio de parqueo  Bicicletas\n\n";
+        try {
+            do {
+                try {
+                    int opcion = Integer.parseInt(JOptionPane.showInputDialog(cad));
+                    switch (opcion) {
+                        case 1:
+                            //fabricaVehiculo.crearFabricaDeVehiculo(autos);
+                            Vehiculo auto = autos.crearVehiculo();
+                           
+                            JOptionPane.showMessageDialog(null, auto.generarCodigoTicket()); 
+                            break;
+                        case 2:
+                           // fabricaVehiculo.crearFabricaDeVehiculo(motos);
+                            Vehiculo moto = motos.crearVehiculo();
+                             
+                            JOptionPane.showMessageDialog(null, moto.generarCodigoTicket());
+                            break;
+                        case 3:
+                            //fabricaVehiculo.crearFabricaDeVehiculo(bicis);
+                            Vehiculo bici = bicis.crearVehiculo();
+                            
+                            JOptionPane.showMessageDialog(null, bici.generarCodigoTicket());
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "No es un valor de consultavalido");
+                            break;
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "No es un parametro de consulta valido");
+                }
+                salida = JOptionPane.showInputDialog("Desea consultar otro codigo? S/N");
+
+            } while (salida.toUpperCase().equals("S"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Busqueda terminada");
+        }
                     case "2":
                         
                     case "3":
@@ -30,28 +74,50 @@ public class Cliente {
                         BahiaVehiculo objTipoBahia = objGB.getTipoBahiaVehiculo("Bahia Auto");
 
                         //BAHIA
-                        System.out.println("ID " + objIdBahia.getId());
-                        System.out.println("TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
+                        JOptionPane.showMessageDialog(null,"ID " + objIdBahia.getId());
+                       JOptionPane.showMessageDialog(null,"TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
 
                         //BAHIA_Duplicado
                         BahiaVehiculo objIdBahiaDup = objGB.getIdDuplicate("1");
                         BahiaVehiculo objTipoBahiaDup = objGB.getTipoDuplicate("Bahia Auto");
-                        System.out.println("ID DUPLICADO " + objIdBahiaDup.getId());
-                        System.out.println("TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
+                       JOptionPane.showMessageDialog(null,"ID DUPLICADO " + objIdBahiaDup.getId());
+                       JOptionPane.showMessageDialog(null,"TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
 
                         // Modificamos bahia original
                         objIdBahia.setId(id);
                         objIdBahia.setTipoVehiculo("Bahia Moto");
 
-                        System.out.println("ID " + objIdBahia.getId());
-                        System.out.println("TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
+                        JOptionPane.showMessageDialog(null,"ID " + objIdBahia.getId());
+                        JOptionPane.showMessageDialog(null,"TIPO BAHIA VEHICULO " + objTipoBahia.getTipoVehiculo());
 
                         //Modificar Duplicado
                         objIdBahiaDup.setId(id);
                         objTipoBahiaDup.setTipoVehiculo("Bahia Moto");
-                        System.out.println("ID DUPLICADO " + objIdBahiaDup.getId());
-                        System.out.println("TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
+                        JOptionPane.showMessageDialog(null,"ID DUPLICADO " + objIdBahiaDup.getId());
+                        JOptionPane.showMessageDialog(null,"TIPO BAHIA VEHICULO DUPLICADO " + objTipoBahiaDup.getTipoVehiculo());
                     case "5":
+                      final int max = 100;
+                      final int min = 1;
+                     String fecha = GenerarFecha();
+                     String codigo1 = String.valueOf((int) (Math.random() * max - min) + min);
+                     String codigo2 = String.valueOf((int) (Math.random() * max - min) + min);
+                     String codigo3 = String.valueOf((int) (Math.random() * max - min) + min);
+                    SingletonHistorial LibroRegistroAuto = SingletonHistorial.getHistorial(codigo1, fecha, " libro1Autos");
+                    SingletonHistorial LibroRegistroMoto = SingletonHistorial.getHistorial(codigo2, fecha, " libro1Motos");
+                    SingletonHistorial LibroRegistroBicicleta = SingletonHistorial.getHistorial(codigo3, fecha, " libro1Biciletas");
+                    SingletonHistorial LibroRegistro = SingletonHistorial.getHistorial(codigo3, fecha, " libro1Biciletas");
+                    JOptionPane.showMessageDialog(null,"Codigo LibroRegistro_Hostorial[" + LibroRegistroAuto.getCodigo() + "] Fecha " + LibroRegistroAuto.getFecha() + " " + LibroRegistroAuto.getDescripcionPar());
+                    JOptionPane.showMessageDialog(null,"Codigo LibroRegistro_Hostorial[" + LibroRegistroMoto.getCodigo() + "] Fecha " + LibroRegistroAuto.getFecha() + " " + LibroRegistroMoto.getDescripcionPar());
+                    JOptionPane.showMessageDialog(null,"Codigo LibroRegistro_Hostorial[" + LibroRegistroBicicleta.getCodigo() + "] Fecha " + LibroRegistroAuto.getFecha() + " " + LibroRegistroBicicleta.getDescripcionPar());
+
+        //queriendo hacer una nueva instance 
+                   JOptionPane.showMessageDialog(null,"Codigo LibroRegistro_Hostorial[" + LibroRegistroBicicleta.getCodigo() + "] Fecha " + LibroRegistroBicicleta.getFecha() + " " + LibroRegistroBicicleta.getDescripcionPar());
+
+        //queriendo hacer un instance por fuera de los exixtentes
+                  JOptionPane.showMessageDialog(null,"Codigo LibroRegistro_Hostorial[" + LibroRegistro.getCodigo() + "] Fecha " + LibroRegistro.getFecha() + " " + LibroRegistro.getDescripcionPar());
+
+    }
+
                         
                 }
             case "2":
@@ -89,6 +155,12 @@ public class Cliente {
                     case "6":
                         
                     case "7":
+                           
+                  FachadaAcceso acceso = new FachadaAcceso();
+                  String codigo = JOptionPane.showInputDialog("Lectura de Codigo Tarjeta:");
+                  acceso.setCodigo(codigo);
+                  JOptionPane.showMessageDialog(null, "Acceso: "+acceso.evaluarTarjeta()); 
+                  JOptionPane.showMessageDialog(null, "Generando ticket en la fecha: "+acceso.aprobarTicket());
                         
                 }
             case "3":
@@ -118,15 +190,53 @@ public class Cliente {
                      case "7":
                          
                      case "8":
-                         
+                  ProductoObservableTarifa objObservado = new ProductoObservableTarifa();
+                 // Instanciar los observadores, pasándoles como parámetro el que será Observado
+                 ProductoObserverSistemaTarifario productoObserver = new ProductoObserverSistemaTarifario(objObservado);
+
+                  objObservado.setTarifa(((int) (Math.random() * (150 - 10)) + 10));
+                 JOptionPane.showMessageDialog(null, "La tarifa  ha cambiado a[" + productoObserver.observadoActualizado() + "] pesos por minuto");
                      case "9":
                          
                      case "10":
-                         
+          
+         
+                 RegistroTickets registro = new RegistroTickets ();
+                 String fecha = GenerarFecha();
+        // se crea grupo de tickets y se le pasa el vehiculo
+                 ListaRegistroTicket ticket1 = new ListaRegistroTicket( 1 );
+                 ticket1.agregarVehiculo(new Vehiculo("Auto",fecha));
+                 ticket1.agregarVehiculo(new Vehiculo("Moto",fecha));
+                 ticket1.agregarVehiculo(new Vehiculo("Bicicleta",fecha));
+
+        // se crea otro grupo de tickets y se le pasa el vehiculo
+                ListaRegistroTicket ticket2 = new ListaRegistroTicket( 2 );
+                ticket2.agregarVehiculo(new Vehiculo("Bicicleta",fecha));
+                ticket2.agregarVehiculo(new Vehiculo("Moto",fecha));
+          
+
+        // se agrega al objeto estructura
+        registro.agregarTicket(ticket1);
+        
+        registro.agregarTicket(ticket2);
+     
+        registro.accept(new Informacion());
                      case "11":
                          
                  }
         }
+    
+    public static String GenerarFecha() {
+        Calendar unaFecha;
+        Random aleatorio;
+        aleatorio = new Random();
+        String fecha = "";
+
+        unaFecha = Calendar.getInstance();
+        unaFecha.set(aleatorio.nextInt(10) + 2014, aleatorio.nextInt(12) + 1, aleatorio.nextInt(30) + 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMMM/yyyy");
+        fecha = sdf.format(unaFecha.getTime());
+        return fecha;
     }
     
 }
